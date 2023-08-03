@@ -1,0 +1,58 @@
+---
+title: "R interface chatGPT"
+---
+
+## Setup
+
+Clone the repository:
+
+```sh
+git clone 
+```
+
+Create a file called `.env.R` that stores your chatGPT PAT in an ojbect called `API_KEY` , so e.g.
+
+```{r}
+#| eval: false
+API_KEY <- "sk-XXXXXXXXXXX"
+```
+
+After that, source the functions in `main.R` and the environment file:
+
+```{r}
+source("main.R")
+source(".env.R")
+```
+
+## ChatGPT with R
+
+Now you can play around with a simple chatGPT interface:
+
+```{r}
+chatGPT("Tell me a joke about a bioinformatician") |> cat()
+```
+
+You can also change the system prompt, i.e. the background style/information of the responder:
+
+```{r}
+chatGPT(user_prompt = "Are fungi eukaryotes?",
+        system_prompt = "You are a helpful assistant, that's also a cool surfer dude") |> cat()
+```
+
+If you're asking for R code, this can be extracted and run on the fly
+
+```{r}
+string <- chatGPT("Generate a scatterplot with ggplot2 where the size of the points is defined by a column called 'size', and the color is defined by a column called 'color'")
+
+extract_code(string) |> sapply(cat)
+
+extract_code(string)[[1]] |> parse(text = _) |> eval()
+```
+
+Also nice is that it can create shiny apps:
+
+```{r}
+string <- chatGPT("Create a r shiny app that creates a histogram of set of random numbers. Let the user choose the mean, standard deviation and number of observations")
+
+extract_code(string) |> sapply(cat)
+```
