@@ -170,11 +170,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/GeertvanGeest/R-interface-chatGPT.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>After that, open the project in R studio.</p>
 <p>Create a file called <code>.env.R</code> that stores your <a href="https://help.openai.com/en/articles/4936850-where-do-i-find-my-secret-api-key">chatGPT API</a> key in an ojbect called <code>API_KEY</code> , so e.g.</p>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-1_42ab1c586a52c493284af3ae980dd3ad">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>API_KEY <span class="ot">&lt;-</span> <span class="st">"sk-XXXXXXXXXXX"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>After that, source the functions in <code>main.R</code> and the environment file:</p>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-2_a1cf831e46bc11ca043fa8e0f0118094">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"main.R"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">".env.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -182,44 +182,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="chatgpt-with-r" class="level2">
 <h2 class="anchored" data-anchor-id="chatgpt-with-r">ChatGPT with R</h2>
 <p>Now you can play around with a simple chatGPT interface:</p>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-3_8353b7f63e0bf39d917b9f812049d433">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chatGPT</span>(<span class="st">"Tell me a joke about a bioinformatician"</span>) <span class="sc">|&gt;</span> <span class="fu">cat</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Why did the bioinformatician always carry a microscope?
+<pre><code>Why did the bioinformatician become a comedian?
 
-Because they wanted to keep an "i" on the genes!</code></pre>
+Because they were tired of analyzing sequels all day and wanted to create some sequences of laughter instead!</code></pre>
 </div>
 </div>
 <p>You can also change the system prompt, i.e.&nbsp;the background style/information of the responder:</p>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-4_cf2b08aa235494ac0b5fef7512690284">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chatGPT</span>(<span class="at">user_prompt =</span> <span class="st">"Are fungi eukaryotes?"</span>,</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">system_prompt =</span> <span class="st">"You are a helpful assistant, that's also a cool surfer dude"</span>) <span class="sc">|&gt;</span> <span class="fu">cat</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">system_prompt =</span> <span class="st">"You respond in the langauge of a cool surfer dude"</span>) <span class="sc">|&gt;</span> <span class="fu">cat</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Yes, fungi are indeed eukaryotes. They belong to the kingdom Fungi, which includes organisms such as mushrooms, yeasts, and molds. Like other eukaryotes, fungi have cells with a distinct nucleus containing their genetic material (DNA) enclosed within a membrane.</code></pre>
+<pre><code>Oh dude, totally! Fungi are totally eukaryotes, bro. They've got those rad membrane-bound organelles and a gnarly nucleus. They've also got a tubular network of hyphae, which is like their own version of a wavy highway system. So yeah, fungi are definitely part of the eukaryote club, man.</code></pre>
 </div>
 </div>
 <p>If you’re asking for R code, this can be extracted and run on the fly</p>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-5_08c04336ee6e1bc00d1bf2e9e24238fb">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>string <span class="ot">&lt;-</span> <span class="fu">chatGPT</span>(<span class="st">"Generate a scatterplot with ggplot2 where the size of the points is defined by a column called 'size', and the color is defined by a column called 'color'"</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">extract_code</span>(string) <span class="sc">|&gt;</span> <span class="fu">sapply</span>(cat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>library(ggplot2)
 
-# Create some sample data
+# Sample data
 data &lt;- data.frame(
-  x = seq(1, 10),
-  y = seq(1, 10),
-  size = c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20),
-  color = c('red', 'blue', 'green', 'yellow', 'orange', 'purple', 'brown', 'pink', 'grey', 'black')
+  x = c(1, 2, 3, 4, 5),
+  y = c(2, 4, 6, 8, 10),
+  size = c(10, 20, 30, 40, 50),
+  color = c("red", "blue", "green", "yellow", "purple")
 )
 
-# Generate scatterplot
+# Create scatterplot
 ggplot(data, aes(x = x, y = y, size = size, color = color)) +
   geom_point() +
-  scale_size_continuous() +
-  scale_color_manual(values = unique(data$color)) +
-  labs(title = "Scatterplot", x = "X-axis", y = "Y-axis")</code></pre>
+  scale_size(range = c(5, 15)) +  # Adjust size range
+  scale_color_manual(values = unique(data$color))  # Set color palette</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
@@ -230,47 +229,67 @@ NULL</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Also nice is that it can create shiny apps:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>string <span class="ot">&lt;-</span> <span class="fu">chatGPT</span>(<span class="st">"Create a r shiny app that creates a histogram of set of random numbers. Let the user choose the mean, standard deviation and number of observations"</span>)</span>
+<p>You can also ask it to fix code:</p>
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-6_bb072e113b4a9fdc482ef5046b08d648">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>string <span class="ot">&lt;-</span> <span class="fu">chatGPT</span>(<span class="st">"I have the following R code: x &lt;- c(1.1, 1.2, 1.3, 1.4). Generate code to make it shorter."</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">extract_code</span>(string) <span class="sc">|&gt;</span> <span class="fu">sapply</span>(cat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>string <span class="sc">|&gt;</span> <span class="fu">cat</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>To make the code shorter, you can use the colon operator to generate the sequence of values:
+
+```R
+x &lt;- 1.1:1.4
+```
+
+This will create a numeric vector with values ranging from 1.1 to 1.4.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">extract_code</span>(string) <span class="sc">|&gt;</span> <span class="fu">sapply</span>(cat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x &lt;- 1.1:1.4</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+NULL</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">extract_code</span>(string)[[<span class="dv">1</span>]] <span class="sc">|&gt;</span> <span class="fu">parse</span>(<span class="at">text =</span> _) <span class="sc">|&gt;</span> <span class="fu">eval</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Also nice is that it can create shiny apps:</p>
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-7_ae70f232519fab37b4aac922be904bef">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>string <span class="ot">&lt;-</span> <span class="fu">chatGPT</span>(<span class="st">"Create code for an R shiny app that creates a histogram of set of random numbers. Let the user choose the mean, standard deviation and number of observations"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">extract_code</span>(string) <span class="sc">|&gt;</span> <span class="fu">sapply</span>(cat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>library(shiny)
 
 # Define the UI
 ui &lt;- fluidPage(
   titlePanel("Random Number Histogram"),
-  
   sidebarLayout(
     sidebarPanel(
       numericInput("mean", "Mean:", value = 0),
       numericInput("sd", "Standard Deviation:", value = 1),
       numericInput("n", "Number of Observations:", value = 100),
-      br(),
       actionButton("generate", "Generate Random Numbers")
     ),
-    
     mainPanel(
       plotOutput("histogram")
     )
   )
 )
 
-# Define the server function
+# Define the server logic
 server &lt;- function(input, output) {
   
-  # Generate random numbers
+  # Generate random numbers based on user input
   observeEvent(input$generate, {
-    random_numbers &lt;- rnorm(input$n, mean = input$mean, sd = input$sd)
+    random_nums &lt;- rnorm(input$n, mean = input$mean, sd = input$sd)
     output$histogram &lt;- renderPlot({
-      hist(random_numbers, main = "Random Number Histogram", xlab = "Values", col = "lightblue")
+      hist(random_nums, main = "Random Number Histogram", xlab = "Value")
     })
   })
-  
 }
 
-# Run the application
+# Run the Shiny app
 shinyApp(ui = ui, server = server)</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
